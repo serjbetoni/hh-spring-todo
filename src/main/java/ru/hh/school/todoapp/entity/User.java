@@ -1,6 +1,14 @@
 package ru.hh.school.todoapp.entity;
 
-import javax.persistence.*;
+
+import ru.hh.school.todoapp.utils.PassHash;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,11 +27,9 @@ public class User {
   public User() {
   }
 
-  public User(Long id, String username, String password, List<Todo> todoList) {
-    this.id = id;
+  public User(String username, String password) {
     this.username = username;
-    this.password = password;
-    this.todoList = todoList;
+    this.password = PassHash.getHash(password);
   }
 
   public Long getId() {
@@ -47,7 +53,7 @@ public class User {
   }
 
   public void setPassword(String password) {
-    this.password = password;
+    this.password = PassHash.getHash(password);
   }
 
   public List<Todo> getTodoList() {

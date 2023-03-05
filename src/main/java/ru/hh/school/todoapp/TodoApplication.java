@@ -25,6 +25,7 @@ public class TodoApplication implements CommandLineRunner {
   public void run(String... args) throws Exception {
 
     User user = new User();
+    //pass hashing in DB
     user.setPassword("pass");
     user.setUsername("hh_user");
 
